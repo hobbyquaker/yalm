@@ -32,7 +32,8 @@ log.loglevel = 'debug'; // default: 'debug'. possible values: 'debug', 'info', '
 ```Javascript
 log.timestamp = false;
 log.severity = false;
-log.color = false;```
+log.color = false;
+```
 
 ## license
 
