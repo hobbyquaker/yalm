@@ -28,7 +28,7 @@ You can set desired loglevel...
 log.loglevel = 'debug'; // default: 'debug'. possible values: 'debug', 'info', 'warn', 'error'
 ```
 
-... and you can turn off printing off timestamps, severity and colors
+... and you can turn off printing of timestamps, severity and colors
 ```Javascript
 log.timestamp = false;
 log.severity = false;
