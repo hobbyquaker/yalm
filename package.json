@@ -1,7 +1,7 @@
 {
   "name": "yalm",
-  "version": "1.0.1",
-  "description": "yet another logging module",
+  "version": "2.0.0",
+  "description": "A simple logging module.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,6 +11,7 @@
     "url": "https://github.com/hobbyquaker/yalm"
   },
   "keywords": [
+    "debug",
     "log",
     "logging",
     "tools",
@@ -18,10 +19,13 @@
     "stdout",
     "stderr"
   ],
-  "author": "Sebastian 'hobbyquaker' Raff <hq@ccu.io>",
+  "author": "Sebastian Raff <hq@ccu.io>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/hobbyquaker/yalm/issues"
   },
-  "homepage": "https://github.com/hobbyquaker/yalm"
+  "homepage": "https://github.com/hobbyquaker/yalm",
+  "dependencies": {
+    "ansi-styles": "^2.1.0"
+  }
 }
