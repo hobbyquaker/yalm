@@ -23,13 +23,13 @@ log.setColor = function (enable) {
                     ansi.bgYellow.close +
                     ansi.black.close,
 
-            error:  ansi.black.open +
+            error:  ansi.white.open +
                     ansi.bold.open +
                     ansi.bgRed.open +
                     '<error>' +
                     ansi.bgRed.close +
                     ansi.bold.close +
-                    ansi.black.close
+                    ansi.white.close
         };
     } else {
         this.map = {
