@@ -1,12 +1,12 @@
 # yalm
 
-A simple Node.js logging module.
+[![npm version](https://badge.fury.io/js/yalm.svg)](https://badge.fury.io/js/yalm) 
+[![Bower Version](https://badge.fury.io/bo/yalm.svg)](http://badge.fury.io/bo/yalm)
+[![License][mit-badge]][mit-url]
+
+A simple javascript logging module.
 
 Offers 4 logging levels, adds timestamp, severity and colors. Logs to stdout/stderr via console.log and console.error.
-
-## install
-
-```npm install yalm```
 
 ## usage
 
@@ -79,3 +79,5 @@ if you want to log in a file or smth you can just overwrite the methods log.stdo
 MIT © [Sebastian Raff](https://github.com/hobbyquaker)
 
 
+[mit-badge]: https://img.shields.io/badge/License-MIT-blue.svg?style=flat
+[mit-url]: LICENSE

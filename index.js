@@ -2,10 +2,14 @@ var log = function () {
     log.info.apply(log, Array.prototype.slice.call(arguments));
 };
 
-var ansi = require('ansi-styles');
+var ansi;
+
+if (typeof require === 'function' && typeof window === 'undefined') {
+    ansi = require('ansi-styles');
+}
 
 log.setColor = function (enable) {
-    if (enable) {
+    if (enable && ansi) {
         this.map = {
             debug:  ansi.bgBlue.open +
                     '<debug>' +
@@ -119,9 +123,19 @@ log.setLevel = function (lvl) {
 };
 
 // set defaults
-log.setColor(process.platform !== 'win32');
+log.setColor(process.platform !== 'win32' && typeof require !== 'undefined' && typeof window === 'undefined');
 log.setTimestamp(true);
 log.setSeverity(true);
 log.setLevel('info');
 
-module.exports = log;
+if (typeof define === 'function' && define.amd) {
+    // export as AMD module
+    define(log);
+} else if (typeof module !== 'undefined') {
+    // export as node module
+    module.exports = log;
+} else {
+    window.log = log;
+}
+
+

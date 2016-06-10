@@ -1,0 +1,30 @@
+{
+  "name": "yalm",
+  "main": "index.js",
+  "version": "3.0.0",
+  "homepage": "https://github.com/hobbyquaker/yalm",
+  "authors": [
+    "Sebastian Raff <hq@ccu.io>"
+  ],
+  "description": "A simple logging module",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "log",
+    "logging",
+    "console",
+    "stdout",
+    "stderr"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
