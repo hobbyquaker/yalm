@@ -74,7 +74,7 @@ log.map.error = 'ERROR:';
 if you want to log in a file or smth you can just overwrite the methods log.stdout and log.stderr with your own logging function.
 ```Javascript
 log.stderr = log.stdout = function () {
-    fs.appendFile('log.txt', Array.prototype.slice.call(arguments).join(' ');
+    fs.appendFile('log.txt', Array.prototype.slice.call(arguments).join(' '));
 };
 ```
 
