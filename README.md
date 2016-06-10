@@ -69,6 +69,10 @@ log.map.warn = 'WARNING:';
 log.map.error = 'ERROR:';
 ```
 
+## custom log targets
+
+if you want to log in a file or smth you can just overwrite the methods log.stdout and log.stderr with your own logging function.
+
 
 ## license
 

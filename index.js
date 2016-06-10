@@ -50,11 +50,15 @@ log.setSeverity = function (enable) {
 };
 
 log._dummy = function () {};
+
+log.stdout = console.log;
+log.stderr = console.error;
+
 log._debug = function () {
     var args = Array.prototype.slice.call(arguments);
     if (this.severity) args.unshift(log.map.debug);
     if (this.timestamp) args.unshift(this.ts());
-    console.log.apply(console, args);
+    this.stdout.apply(this, args);
 };
 log._info = function () {
     var args = Array.prototype.slice.call(arguments);
@@ -66,13 +70,14 @@ log._warn = function () {
     var args = Array.prototype.slice.call(arguments);
     if (this.severity) args.unshift(log.map.warn);
     if (this.timestamp) if (this.timestamp) args.unshift(this.ts());
-    console.log.apply(console, args);
+    this.stdout.apply(console, args);
+
 };
 log._error = function () {
     var args = Array.prototype.slice.call(arguments);
     if (this.severity) args.unshift(log.map.error);
     if (this.timestamp) args.unshift(this.ts());
-    console.error.apply(console, args);
+    this.stderr.apply(console, args);
 };
 log.ts = function () {
     var d = new Date();
