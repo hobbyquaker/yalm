@@ -1,6 +1,6 @@
 {
   "name": "yalm",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "A simple logging module.",
   "main": "index.js",
   "scripts": {
