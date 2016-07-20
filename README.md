@@ -4,15 +4,14 @@
 [![Bower Version](https://badge.fury.io/bo/yalm.svg)](http://badge.fury.io/bo/yalm)
 [![License][mit-badge]][mit-url]
 
-A simple javascript logging module.
+A simple javascript logging module for Node.js and the Browser.
 
-Offers 4 logging levels, adds timestamp, severity and colors. Logs to stdout/stderr via console.log and console.error.
+Offers 4 logging levels, adds timestamp, severity and colors (even in browser console if possible). 
+Logs via console.log, console.warn (if available) and console.error.
 
 ## usage
 
 ```Javascript
-var log = require('yalm');
-
 log.debug('a debug message');
 log.info('an info message');
 log.warn('a warning message');
@@ -20,7 +19,7 @@ log.error('an error message');
 
 log.info('array:', [null, 1, 'string', true]);
 log.info('buffer:', new Buffer([32, 32]));
-log.info('object:', {"key": "val"});
+log('object:', {"key": "val"});
 ```
 
 ## output of above usage example
