@@ -24,7 +24,11 @@ log('object:', {"key": "val"});
 
 ## output of above usage example
 
-![sample output](sample.png)
+#### Node.js
+![Node.js sample output](nodejs.png)
+
+#### Browser
+![Browser sample output](browser.png)
 
 
 ## options
