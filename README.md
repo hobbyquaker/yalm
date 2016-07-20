@@ -70,9 +70,9 @@ log.map.error = 'ERROR:';
 
 ## custom log targets
 
-if you want to log in a file or smth you can just overwrite the methods log.stdout and log.stderr with your own logging function.
+if you want to log in a file or smth you can just overwrite the methods log.stdout, log.stdwrn and log.stderr with your own logging function.
 ```Javascript
-log.stderr = log.stdout = function () {
+log.stderr = log.stdwrn = log.stdout = function () {
     fs.appendFile('log.txt', Array.prototype.slice.call(arguments).join(' '));
 };
 ```
