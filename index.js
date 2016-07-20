@@ -2,10 +2,9 @@ var log = function () {
     log.info.apply(log, Array.prototype.slice.call(arguments));
 };
 
-var ansi = require('ansi-styles');
-
 log.setColor = function (enable) {
-    if (enable) {
+    if (enable && (typeof require === 'function') && (typeof window === 'undefined') && process && process.platform !== 'win32') {
+        var ansi = require('ansi-styles');
         this.map = {
             debug:  ansi.bgBlue.open +
                     '<debug>' +
@@ -50,11 +49,15 @@ log.setSeverity = function (enable) {
 };
 
 log._dummy = function () {};
+
+log.stdout = console.log;
+log.stderr = console.error;
+
 log._debug = function () {
     var args = Array.prototype.slice.call(arguments);
     if (this.severity) args.unshift(log.map.debug);
     if (this.timestamp) args.unshift(this.ts());
-    console.log.apply(console, args);
+    this.stdout.apply(console, args);
 };
 log._info = function () {
     var args = Array.prototype.slice.call(arguments);
@@ -66,13 +69,14 @@ log._warn = function () {
     var args = Array.prototype.slice.call(arguments);
     if (this.severity) args.unshift(log.map.warn);
     if (this.timestamp) if (this.timestamp) args.unshift(this.ts());
-    console.log.apply(console, args);
+    this.stdout.apply(console, args);
+
 };
 log._error = function () {
     var args = Array.prototype.slice.call(arguments);
     if (this.severity) args.unshift(log.map.error);
     if (this.timestamp) args.unshift(this.ts());
-    console.error.apply(console, args);
+    this.stderr.apply(console, args);
 };
 log.ts = function () {
     var d = new Date();
@@ -114,9 +118,17 @@ log.setLevel = function (lvl) {
 };
 
 // set defaults
-log.setColor(process.platform !== 'win32');
+log.setColor(true);
 log.setTimestamp(true);
 log.setSeverity(true);
 log.setLevel('info');
 
-module.exports = log;
+if (typeof define === 'function' && define.amd) {
+    // export as AMD module
+    define(log);
+} else if (typeof module !== 'undefined') {
+    // export as node module
+    module.exports = log;
+} else {
+    window.log = log;
+}
