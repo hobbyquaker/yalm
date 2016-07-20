@@ -31,7 +31,7 @@ log.setColor = function (enable) {
                     ansi.bold.close +
                     ansi.white.close
         };
-    } else if (((typeof window !== 'undefined') && window.chrome) || ((typeof browser !== 'undefined') && browser.isFirefox && (typeof support !== 'undefined') && support.modifiedConsole)) {
+    } else if (enable && (((typeof window !== 'undefined') && window.chrome) || ((typeof browser !== 'undefined') && browser.isFirefox && (typeof support !== 'undefined') && support.modifiedConsole))) {
         this.map = {
             debug:  '%c<debug>',
             info:   '%c<info> ',
