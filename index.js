@@ -4,7 +4,7 @@ var log = function () {
 
 log.setColor = function (enable) {
     this.cssColor = false;
-    if (enable && (typeof require === 'function') && (typeof window === 'undefined') && process && process.platform !== 'win32') {
+    if (enable && (typeof require === 'function') && (typeof window === 'undefined') && (typeof process !== 'undefined') && process.platform !== 'win32') {
         var ansi = require('ansi-styles');
         this.map = {
             debug:  ansi.bgBlue.open +
@@ -31,7 +31,7 @@ log.setColor = function (enable) {
                     ansi.bold.close +
                     ansi.white.close
         };
-    } else if ((window && window.chrome) || (browser && browser.isFirefox && support && support.modifiedConsole)) {
+    } else if (((typeof window !== 'undefined') && window.chrome) || ((typeof browser !== 'undefined') && browser.isFirefox && (typeof support !== 'undefined') && support.modifiedConsole)) {
         this.map = {
             debug:  '%c<debug>',
             info:   '%c<info> ',
