@@ -25,7 +25,11 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
+    "test.html",
+    "test.js",
+    ".git",
+    ".npmignore",
+    ".browser.png",
+    ".nodejs.png"
   ]
 }
