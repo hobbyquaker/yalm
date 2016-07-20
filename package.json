@@ -20,6 +20,9 @@
     "stderr"
   ],
   "author": "Sebastian Raff <hq@ccu.io>",
+  "contributors": [
+    "Daniel 'ColdFireIce' Becker"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/hobbyquaker/yalm/issues"
