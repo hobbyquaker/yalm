@@ -3,6 +3,7 @@ var log = function () {
 };
 
 log.setColor = function (enable) {
+    this.cssColor = false;
     if (enable && (typeof require === 'function') && (typeof window === 'undefined') && process && process.platform !== 'win32') {
         var ansi = require('ansi-styles');
         this.map = {
@@ -30,6 +31,20 @@ log.setColor = function (enable) {
                     ansi.bold.close +
                     ansi.white.close
         };
+    } else if ((window && window.chrome) || (browser && browser.isFirefox && support && support.modifiedConsole)) {
+        this.map = {
+            debug:  '%c<debug>',
+            info:   '%c<info> ',
+            warn:   '%c<warn> ',
+            error:  '%c<error>'
+        };
+        this.mapCss = {
+            debug:  'background: blue; color: white',
+            info:   'background: lime; color: black',
+            warn:   'background: yellow; color: black',
+            error:  'background: red; color: white; font-weight: bold'
+        };
+        this.cssColor = true;
     } else {
         this.map = {
             debug:  '<debug>',
@@ -52,30 +67,72 @@ log._dummy = function () {};
 
 log.stdout = console.log;
 log.stderr = console.error;
+log.stdwrn = (typeof console.warn === 'function') ? console.warn : console.log;
+
 
 log._debug = function () {
     var args = Array.prototype.slice.call(arguments);
-    if (this.severity) args.unshift(log.map.debug);
-    if (this.timestamp) args.unshift(this.ts());
+    if (this.cssColor) {
+        var prefix = '';
+        if (this.timestamp) prefix += this.ts();
+        if (this.severity) {
+            prefix = [prefix, log.map.debug].join(' ');
+            args.unshift(this.mapCss.debug);
+        }
+        args.unshift(prefix);
+    } else {
+        if (this.severity) args.unshift(log.map.debug);
+        if (this.timestamp) args.unshift(this.ts());
+    }
     this.stdout.apply(console, args);
 };
 log._info = function () {
     var args = Array.prototype.slice.call(arguments);
-    if (this.severity) args.unshift(log.map.info);
-    if (this.timestamp) args.unshift(this.ts());
-    console.log.apply(console, args);
+    if (this.cssColor) {
+        var prefix = '';
+        if (this.timestamp) prefix += this.ts();
+        if (this.severity) {
+            prefix = [prefix, log.map.info].join(' ');
+            args.unshift(this.mapCss.info);
+        }
+        args.unshift(prefix);
+    } else {
+        if (this.severity) args.unshift(log.map.info);
+        if (this.timestamp) args.unshift(this.ts());
+    }
+    this.stdout.apply(console, args);
 };
 log._warn = function () {
     var args = Array.prototype.slice.call(arguments);
-    if (this.severity) args.unshift(log.map.warn);
-    if (this.timestamp) if (this.timestamp) args.unshift(this.ts());
-    this.stdout.apply(console, args);
-
+    if (this.cssColor) {
+        var prefix = '';
+        if (this.timestamp) prefix += this.ts();
+        if (this.severity) {
+            prefix = [prefix, log.map.warn].join(' ');
+            args.unshift(this.mapCss.warn);
+        }
+        args.unshift(prefix);
+    } else {
+        if (this.severity) args.unshift(log.map.warn);
+        if (this.timestamp) args.unshift(this.ts());
+    }
+    log.stdwrn.apply(console, args);
 };
+
 log._error = function () {
     var args = Array.prototype.slice.call(arguments);
-    if (this.severity) args.unshift(log.map.error);
-    if (this.timestamp) args.unshift(this.ts());
+    if (this.cssColor) {
+        var prefix = '';
+        if (this.timestamp) prefix += this.ts();
+        if (this.severity) {
+            prefix = [prefix, log.map.error].join(' ');
+            args.unshift(this.mapCss.error);
+        }
+        args.unshift(prefix);
+    } else {
+        if (this.severity) args.unshift(log.map.error);
+        if (this.timestamp) args.unshift(this.ts());
+    }
     this.stderr.apply(console, args);
 };
 log.ts = function () {
