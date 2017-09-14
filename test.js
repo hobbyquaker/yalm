@@ -14,6 +14,9 @@ log.info('object:', {"key": "val"});
 log('another info message');
 log.log('another info message');
 
+log.debug("printf-like replacement counter %d <-- yeah!", 99);
+log.debug("printf-like replacement counter    <-- yeah!", 99);
+log.debug("as if there was never a difference to console.log");
 
 log.setColor(false);
 log.info('no colors!');
