@@ -4,7 +4,7 @@
   "description": "A simple logging module.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "camo-purge && xo"
   },
   "repository": {
     "type": "git",
@@ -31,5 +31,16 @@
   "homepage": "https://github.com/hobbyquaker/yalm",
   "dependencies": {
     "ansi-styles": "^2.1.0"
+  },
+  "devDependencies": {
+    "camo-purge": "^1.0.2",
+    "xo": "^0.18.2"
+  },
+  "xo": {
+    "space": 4,
+    "ignore": [
+      "test.js"
+    ],
+    "esnext": false
   }
 }
