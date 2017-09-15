@@ -21,7 +21,8 @@
   ],
   "author": "Sebastian Raff <hq@ccu.io>",
   "contributors": [
-    "Daniel 'ColdFireIce' Becker"
+    "Daniel 'ColdFireIce' Becker",
+    "Simon Christmann https://github.com/dersimn"
   ],
   "license": "MIT",
   "bugs": {
