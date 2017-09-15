@@ -71,69 +71,145 @@ log.stdwrn = (typeof console.warn === 'function') ? console.warn : console.log;
 
 
 log._debug = function () {
-    var args = Array.prototype.slice.call(arguments);
-    if (this.cssColor) {
+    if (typeof arguments[0] == 'string') {
+        // Preserves behaiviour in case of printf-like strings: "blabla count: %d - yeah!"
         var prefix = '';
-        if (this.timestamp) prefix += this.ts();
-        if (this.severity) {
-            prefix = [prefix, log.map.debug].join(' ');
-            args.unshift(this.mapCss.debug);
+        if (this.cssColor) {
+            if (this.timestamp) prefix += this.ts();
+            if (this.severity) {
+                prefix = [prefix, log.map.debug].join(' ');
+                args.unshift(this.mapCss.debug);
+            }
+        } else {
+            if (this.timestamp) prefix += this.ts() + " ";
+            if (this.severity)  prefix += log.map.debug + " ";
         }
-        args.unshift(prefix);
+        arguments[0] = prefix + arguments[0];
+        this.stdout.apply(console, arguments);
     } else {
-        if (this.severity) args.unshift(log.map.debug);
-        if (this.timestamp) args.unshift(this.ts());
+        // Takes care of any other case
+        // https://gist.github.com/robatron/5681424
+        var args = Array.prototype.slice.call(arguments);
+        if (this.cssColor) {
+            var prefix = '';
+            if (this.timestamp) prefix += this.ts();
+            if (this.severity) {
+                prefix = [prefix, log.map.debug].join(' ');
+                args.unshift(this.mapCss.debug);
+            }
+            args.unshift(prefix);
+        } else {
+            if (this.severity) args.unshift(log.map.debug);
+            if (this.timestamp) args.unshift(this.ts());
+        }
+        this.stdout.apply(console, args);
     }
-    this.stdout.apply(console, args);
 };
 log._info = function () {
-    var args = Array.prototype.slice.call(arguments);
-    if (this.cssColor) {
+    if (typeof arguments[0] == 'string') {
+        // Preserves behaiviour in case of printf-like strings: "blabla count: %d - yeah!"
         var prefix = '';
-        if (this.timestamp) prefix += this.ts();
-        if (this.severity) {
-            prefix = [prefix, log.map.info].join(' ');
-            args.unshift(this.mapCss.info);
+        if (this.cssColor) {
+            if (this.timestamp) prefix += this.ts();
+            if (this.severity) {
+                prefix = [prefix, log.map.info].join(' ');
+                args.unshift(this.mapCss.info);
+            }
+        } else {
+            if (this.timestamp) prefix += this.ts() + " ";
+            if (this.severity)  prefix += log.map.info + " ";
         }
-        args.unshift(prefix);
+        arguments[0] = prefix + arguments[0];
+        this.stdout.apply(console, arguments);
     } else {
-        if (this.severity) args.unshift(log.map.info);
-        if (this.timestamp) args.unshift(this.ts());
+        // Takes care of any other case
+        // https://gist.github.com/robatron/5681424
+        var args = Array.prototype.slice.call(arguments);
+        if (this.cssColor) {
+            var prefix = '';
+            if (this.timestamp) prefix += this.ts();
+            if (this.severity) {
+                prefix = [prefix, log.map.info].join(' ');
+                args.unshift(this.mapCss.info);
+            }
+            args.unshift(prefix);
+        } else {
+            if (this.severity) args.unshift(log.map.info);
+            if (this.timestamp) args.unshift(this.ts());
+        }
+        this.stdout.apply(console, args);
     }
-    this.stdout.apply(console, args);
 };
 log._warn = function () {
-    var args = Array.prototype.slice.call(arguments);
-    if (this.cssColor) {
+    if (typeof arguments[0] == 'string') {
+        // Preserves behaiviour in case of printf-like strings: "blabla count: %d - yeah!"
         var prefix = '';
-        if (this.timestamp) prefix += this.ts();
-        if (this.severity) {
-            prefix = [prefix, log.map.warn].join(' ');
-            args.unshift(this.mapCss.warn);
+        if (this.cssColor) {
+            if (this.timestamp) prefix += this.ts();
+            if (this.severity) {
+                prefix = [prefix, log.map.warn].join(' ');
+                args.unshift(this.mapCss.warn);
+            }
+        } else {
+            if (this.timestamp) prefix += this.ts() + " ";
+            if (this.severity)  prefix += log.map.warn + " ";
         }
-        args.unshift(prefix);
+        arguments[0] = prefix + arguments[0];
+        this.stdout.apply(console, arguments);
     } else {
-        if (this.severity) args.unshift(log.map.warn);
-        if (this.timestamp) args.unshift(this.ts());
+        // Takes care of any other case
+        // https://gist.github.com/robatron/5681424
+        var args = Array.prototype.slice.call(arguments);
+        if (this.cssColor) {
+            var prefix = '';
+            if (this.timestamp) prefix += this.ts();
+            if (this.severity) {
+                prefix = [prefix, log.map.warn].join(' ');
+                args.unshift(this.mapCss.warn);
+            }
+            args.unshift(prefix);
+        } else {
+            if (this.severity) args.unshift(log.map.warn);
+            if (this.timestamp) args.unshift(this.ts());
+        }
+        this.stdwrn.apply(console, args);
     }
-    log.stdwrn.apply(console, args);
 };
 
 log._error = function () {
-    var args = Array.prototype.slice.call(arguments);
-    if (this.cssColor) {
+    if (typeof arguments[0] == 'string') {
+        // Preserves behaiviour in case of printf-like strings: "blabla count: %d - yeah!"
         var prefix = '';
-        if (this.timestamp) prefix += this.ts();
-        if (this.severity) {
-            prefix = [prefix, log.map.error].join(' ');
-            args.unshift(this.mapCss.error);
+        if (this.cssColor) {
+            if (this.timestamp) prefix += this.ts();
+            if (this.severity) {
+                prefix = [prefix, log.map.error].join(' ');
+                args.unshift(this.mapCss.error);
+            }
+        } else {
+            if (this.timestamp) prefix += this.ts() + " ";
+            if (this.severity)  prefix += log.map.error + " ";
         }
-        args.unshift(prefix);
+        arguments[0] = prefix + arguments[0];
+        this.stdout.apply(console, arguments);
     } else {
-        if (this.severity) args.unshift(log.map.error);
-        if (this.timestamp) args.unshift(this.ts());
+        // Takes care of any other case
+        // https://gist.github.com/robatron/5681424
+        var args = Array.prototype.slice.call(arguments);
+        if (this.cssColor) {
+            var prefix = '';
+            if (this.timestamp) prefix += this.ts();
+            if (this.severity) {
+                prefix = [prefix, log.map.error].join(' ');
+                args.unshift(this.mapCss.error);
+            }
+            args.unshift(prefix);
+        } else {
+            if (this.severity) args.unshift(log.map.error);
+            if (this.timestamp) args.unshift(this.ts());
+        }
+        this.stderr.apply(console, args);
     }
-    this.stderr.apply(console, args);
 };
 log.ts = function () {
     var d = new Date();
