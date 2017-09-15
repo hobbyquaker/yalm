@@ -30,11 +30,11 @@
   },
   "homepage": "https://github.com/hobbyquaker/yalm",
   "dependencies": {
-    "ansi-styles": "^2.1.0"
+    "ansi-styles": "^3.2.0"
   },
   "devDependencies": {
-    "camo-purge": "^1.0.2",
-    "xo": "^0.18.2"
+    "camo-purge": "latest",
+    "xo": "latest"
   },
   "xo": {
     "space": 4,
